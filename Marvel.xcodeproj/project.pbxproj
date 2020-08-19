@@ -79,6 +79,9 @@
 		DB96735924ED84B800E81F13 /* Marvel */ = {
 			isa = PBXGroup;
 			children = (
+				DB96737C24ED84F300E81F13 /* Presentation */,
+				DB96737D24ED84FD00E81F13 /* Domain */,
+				DB96737E24ED850600E81F13 /* Data */,
 				DB96735A24ED84B800E81F13 /* AppDelegate.swift */,
 				DB96735C24ED84B800E81F13 /* SceneDelegate.swift */,
 				DB96735E24ED84B800E81F13 /* ViewController.swift */,
@@ -97,6 +100,27 @@
 				DB96737324ED84B900E81F13 /* Info.plist */,
 			);
 			path = MarvelTests;
+			sourceTree = "<group>";
+		};
+		DB96737C24ED84F300E81F13 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		DB96737D24ED84FD00E81F13 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		DB96737E24ED850600E81F13 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

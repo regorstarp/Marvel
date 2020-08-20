@@ -14,7 +14,7 @@ class GenericApiProvider {
     private var provider: MoyaProvider<MultiTarget>
     
     init(provider: MoyaProvider<MultiTarget>? = nil) {
-        self.provider = provider ?? MoyaProvider<MultiTarget>()
+        self.provider = provider ?? MoyaProvider<MultiTarget>(plugins: [NetworkLoggerPlugin(verbose: true)])
     }
     
     func request(_ target: TargetType) -> Single<Response> {

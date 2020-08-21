@@ -12,38 +12,36 @@ enum MarvelTarget {
     static private let publicKey = "659aadca6e5aa712c59235a84be22219"
     static private let privateKey = "bf9a9cbe6e4d3f12ab20decbc108f4ff1ab36459"
     
-    case getComic
+    case getComics
 }
 
 // MARK: TargetType Protocol Implementation
 
 extension MarvelTarget: TargetType {
-    
-    
     var baseURL: URL {
         switch self {
-        case .getComic:
+        case .getComics:
             return URL(string: "https://gateway.marvel.com/v1/public")!
         }
     }
     
     var path: String {
         switch self {
-        case .getComic:
+        case .getComics:
             return "/comics"
         }
     }
     
     var method: Method {
         switch self {
-        case .getComic:
+        case .getComics:
             return .get
         }
     }
     
     var sampleData: Data {
         switch self {
-        case .getComic:
+        case .getComics:
             return "Example".data(using: .utf8)!
         }
     }
@@ -51,21 +49,25 @@ extension MarvelTarget: TargetType {
     var task: Task {
         let timestamp = "\(Date().timeIntervalSince1970)"
         let hash = (timestamp + MarvelTarget.privateKey + MarvelTarget.publicKey).md5
-        var params: [String:Any] = ["apikey": MarvelTarget.publicKey,
-                      "ts": timestamp,
-                      "hash": hash]
-        
+        var params: [String: Any] = [:]
+        params["ts"] = timestamp
+        params["apikey"] = MarvelTarget.publicKey
+        params["hash"] = hash
+
         switch self {
-        case .getComic:
+        case .getComics:
+            params["format"] = "comic"
+            params["format"] = "comic"
+            params["dateDescriptor"] = "thisMonth"
             params["limit"] = 40
             return .requestParameters(parameters: params,
-                                      encoding: JSONEncoding.default)
+                                      encoding: URLEncoding.default)
         }
     }
     
     var headers: [String : String]? {
         switch self {
-        case .getComic:
+        case .getComics:
             return ["Content-Type": "application/json"]
         }
     }

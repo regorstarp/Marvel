@@ -18,8 +18,6 @@ struct ComicDataResponse: Codable {
 
 struct ComicResultResponse: Codable {
     let id: Int?
-    let title: String?
-    let description: String?
     let thumbnail: ComicThumbnailResponse?
 }
 
@@ -29,6 +27,6 @@ struct ComicThumbnailResponse: Codable {
     
     enum CodingKeys: String, CodingKey {
         case path
-        case thumbnailExtension = "thumbnail"
+        case thumbnailExtension = "extension"
     }
 }

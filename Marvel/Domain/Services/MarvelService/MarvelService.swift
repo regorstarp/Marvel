@@ -11,8 +11,9 @@ import RxSwift
 protocol MarvelService {
     /// Fetches a list of comics.
     ///
+    /// - Parameter searchText: Optional text used to filter comics by name.
     /// - Returns: List of comics.
-    func getComics() -> Single<[Comic]?>
+    func getComics(with searchText: String?) -> Single<[Comic]?>
 }
 
 class MarvelServiceImpl: MarvelService {
@@ -22,7 +23,7 @@ class MarvelServiceImpl: MarvelService {
         self.marvelRepository = marvelRepository
     }
     
-    func getComics() -> Single<[Comic]?> {
-        return marvelRepository.getComics()
+    func getComics(with searchText: String?) -> Single<[Comic]?> {
+        return marvelRepository.getComics(with: searchText)
     }
 }

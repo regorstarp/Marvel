@@ -9,7 +9,6 @@
 import Foundation
 
 protocol BaseView: AnyObject, Loadable {
-    var currentLoadable: Loadable? { get set }
     func showError(title: String, message: String?)
 }
 

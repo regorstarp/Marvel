@@ -11,7 +11,8 @@ import UIKit
 class BaseViewController<P: BasePresenter>: UIViewController, BaseView {
     typealias Presenter = P
     var presenter: Presenter!
-    var currentLoadable: Loadable?
+    
+    private lazy var loadingView = LoadingView(frame: view.frame)
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
@@ -55,10 +56,10 @@ class BaseViewController<P: BasePresenter>: UIViewController, BaseView {
     //MARK: - Loadable
     
     func showLoading() {
-        
+        view.addSubview(loadingView)
     }
     
     func hideLoading() {
-        
+        loadingView.removeFromSuperview()
     }
 }

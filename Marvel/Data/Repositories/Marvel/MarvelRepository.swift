@@ -27,7 +27,7 @@ class MarvelDataRepository: MarvelRepository {
     }
 
     func getComics() -> Single<[Comic]?> {
-        return genericProvider.request(MarvelTarget.getComic)
+        return genericProvider.request(MarvelTarget.getComics)
             .filterSuccessfulStatusCodes()
             .map(ComicResponse.self)
             .flatMap({ [weak self] response in

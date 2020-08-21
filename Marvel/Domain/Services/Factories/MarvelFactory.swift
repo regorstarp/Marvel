@@ -12,17 +12,21 @@ class MarvelFactory {
     func createComicList(from response: ComicResponse) -> [Comic]? {
         return response.data?.results?.compactMap({ result -> Comic? in
             guard let id = result.id,
-                let name = result.title,
-                let description = result.description,
                 let thumbnailPath = result.thumbnail?.path,
                 let thumbnailExtension = result.thumbnail?.thumbnailExtension,
-                let thumbnailURL = URL(string: thumbnailPath + thumbnailExtension) else {
+                let thumbnailURL = URL(string: "\(thumbnailPath).\(thumbnailExtension)"),
+                //ignore comics with no image available
+                !thumbnailPath.contains("image_not_available") else {
                     return nil
             }
             return Comic(id: id,
-                             name: name,
-                             description: description,
-                             thumbnailURL: thumbnailURL)
+                             thumbnailURL: convertURLToHttps(thumbnailURL))
         })
+    }
+    
+    private func convertURLToHttps(_ url: URL) -> URL? {
+        var httpsUrl = URLComponents(string: url.absoluteString)
+        httpsUrl?.scheme = "https"
+        return httpsUrl?.url
     }
 }

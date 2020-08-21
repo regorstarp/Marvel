@@ -26,9 +26,7 @@ class MarvelRepositoryTests: XCTestCase {
 
     func testGetComics() throws {
         let expectation = self.expectation(description: "getComics")
-        
-        
-        _ = stubbingProvider.request(.getComic, completion: { (result) in
+        _ = stubbingProvider.request(.getComics, completion: { (result) in
             switch result {
             case .success(_):
                 expectation.fulfill()

@@ -34,11 +34,25 @@ class ComicsPresenter: BasePresenter {
         fetchComics()
     }
     
+    // MARK: - Public methods
+    
+    func searchBarSearchButtonClicked(with text: String?) {
+        guard let searchText = text,
+            !searchText.isEmpty else {
+            return
+        }
+        fetchComics(with: searchText)
+    }
+    
+    func searchBarCancelButtonClicked() {
+        fetchComics()
+    }
+    
     // MARK: - Private methods
     
-    private func fetchComics() {
+    private func fetchComics(with searchText: String? = nil) {
         view?.showLoading()
-        marvelService.getComics()
+        marvelService.getComics(with: searchText)
             .applySchedulers()
             .subscribe(onSuccess: { [weak self] comics in
                 self?.view?.hideLoading()

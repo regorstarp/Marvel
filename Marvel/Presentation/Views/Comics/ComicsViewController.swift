@@ -17,7 +17,6 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.05882352941, green: 0.09019607843, blue: 0.1098039216, alpha: 1)
         configureNavigationBar()
         configureCollectionView()
     }
@@ -26,9 +25,11 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
     
     private func configureNavigationBar() {
         title = "Comics"
+        navigationController?.navigationBar.prefersLargeTitles = true
         let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController?.searchBar.backgroundColor = #colorLiteral(red: 0.05882352941, green: 0.09019607843, blue: 0.1098039216, alpha: 1)
         navigationItem.searchController = searchController
+        navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController?.searchBar.delegate = self
     }
     
     private func configureCollectionView() {
@@ -87,5 +88,15 @@ extension ComicsViewController: UICollectionViewDelegateFlowLayout {
         let collectionViewSize = collectionView.frame.size.width - padding
 
         return CGSize(width: collectionViewSize, height: view.bounds.size.height * 0.6)
+    }
+}
+
+extension ComicsViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        presenter.searchBarSearchButtonClicked(with: searchBar.text)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.searchBarCancelButtonClicked()
     }
 }

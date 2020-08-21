@@ -50,7 +50,7 @@ class BaseViewController<P: BasePresenter>: UIViewController, BaseView {
     //MARK: - BaseView
     
     func showError(title: String, message: String?) {
-        
+        showAlert(title: title, message: message)
     }
     
     //MARK: - Loadable
@@ -62,4 +62,18 @@ class BaseViewController<P: BasePresenter>: UIViewController, BaseView {
     func hideLoading() {
         loadingView.removeFromSuperview()
     }
+    
+    //MARK: - Private methods
+    
+    func showAlert(title: String, message: String?) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .default,
+                                   handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+    
 }

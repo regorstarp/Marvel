@@ -19,6 +19,7 @@
 		DB874D7524EEA469009666A3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D7424EEA469009666A3 /* BaseViewController.swift */; };
 		DB874D7724EEA47E009666A3 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D7624EEA47E009666A3 /* BasePresenter.swift */; };
 		DB874D7924EEA4E3009666A3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D7824EEA4E3009666A3 /* BaseView.swift */; };
+		DB874D7D24EEDAB4009666A3 /* ComicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D7B24EEDAB4009666A3 /* ComicCollectionViewCell.swift */; };
 		DB874D8324EFC818009666A3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D8224EFC818009666A3 /* LoadingView.swift */; };
 		DB96735B24ED84B800E81F13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96735A24ED84B800E81F13 /* AppDelegate.swift */; };
 		DB96735D24ED84B800E81F13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96735C24ED84B800E81F13 /* SceneDelegate.swift */; };
@@ -63,6 +64,7 @@
 		DB874D7424EEA469009666A3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DB874D7624EEA47E009666A3 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
 		DB874D7824EEA4E3009666A3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		DB874D7B24EEDAB4009666A3 /* ComicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicCollectionViewCell.swift; sourceTree = "<group>"; };
 		DB874D8224EFC818009666A3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		DB96735724ED84B800E81F13 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB96735A24ED84B800E81F13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		DB874D6824EEA359009666A3 /* Comics */ = {
 			isa = PBXGroup;
 			children = (
+				DB874D7A24EEDA9B009666A3 /* Cells */,
 				DB96735E24ED84B800E81F13 /* ComicsViewController.swift */,
 				DB96736024ED84B800E81F13 /* Main.storyboard */,
 				DB874D6A24EEA376009666A3 /* ComicsPresenter.swift */,
@@ -203,6 +206,14 @@
 				DB874D7824EEA4E3009666A3 /* BaseView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		DB874D7A24EEDA9B009666A3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DB874D7B24EEDAB4009666A3 /* ComicCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		DB874D8124EFC80A009666A3 /* LoadingView */ = {
@@ -539,6 +550,7 @@
 				DB96738224EE6B5900E81F13 /* MarvelTarget.swift in Sources */,
 				DB874D5F24EE9F27009666A3 /* DataModule.swift in Sources */,
 				DB96738E24EE71CD00E81F13 /* Comic.swift in Sources */,
+				DB874D7D24EEDAB4009666A3 /* ComicCollectionViewCell.swift in Sources */,
 				DB874D6124EEA146009666A3 /* ViewModule.swift in Sources */,
 				DB874D6724EEA2F9009666A3 /* ApplicationModule.swift in Sources */,
 				DB874D6B24EEA376009666A3 /* ComicsPresenter.swift in Sources */,

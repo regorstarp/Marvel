@@ -15,10 +15,6 @@ class ComicCollectionViewCell: UICollectionViewCell {
     private enum Constants {
         static let cornerRadius: CGFloat = 12
         static let imageFadeDuration: Double = 0.2
-        //BgView
-        static let highlightedBgAlpha: CGFloat = 0.2
-        static let notHighlightedBgAlpha: CGFloat = 0.1
-        static let bgViewGreyScale: CGFloat = 1.0
         //Highlighted animation
         static let highlightedAnimationDuration: Double = 0.45
         static let notHighlightedAnimationDuration: Double = 0.4
@@ -33,19 +29,14 @@ class ComicCollectionViewCell: UICollectionViewCell {
     static let identifier = String(describing: ComicCollectionViewCell.self)
     
     private let imageView = ImageView()
-    private let bgView = UIView()
     
     override var isHighlighted: Bool {
         didSet {
             let duration = isHighlighted ? Constants.highlightedAnimationDuration : Constants.notHighlightedAnimationDuration
             let transform = isHighlighted ?
                 CGAffineTransform(scaleX: Constants.highlightedAnimationTrasnformScale, y: Constants.highlightedAnimationTrasnformScale) : CGAffineTransform.identity
-            let bgAlpha = isHighlighted ? Constants.highlightedBgAlpha : Constants.notHighlightedBgAlpha
-            let bgColor = UIColor(white: Constants.bgViewGreyScale,
-                                  alpha: bgAlpha)
             let animations = {
                 self.transform = transform
-                self.bgView.backgroundColor = bgColor
             }
             
             UIView.animate(withDuration: duration,
@@ -67,7 +58,6 @@ class ComicCollectionViewCell: UICollectionViewCell {
         autoresizesSubviews = true
         layer.cornerRadius = Constants.cornerRadius
         
-        configureBackgroundView()
         configureImageView()
         
         setupConstraints()
@@ -100,13 +90,6 @@ class ComicCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleToFill
         addSubview(imageView)
-    }
-    
-    private func configureBackgroundView() {
-        bgView.frame = bounds
-        bgView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        bgView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1019638271)
-        backgroundView = backgroundView
     }
     
     private func setupConstraints() {

@@ -10,17 +10,11 @@ import Foundation
 
 class Comic {
     let id: Int
-    let name: String
-    let description: String
-    let thumbnailURL: URL
+    let thumbnailURL: URL?
     
     init(id: Int,
-         name: String,
-         description: String,
-         thumbnailURL: URL) {
+         thumbnailURL: URL?) {
         self.id = id
-        self.name = name
-        self.description = description
         self.thumbnailURL = thumbnailURL
     }
 }

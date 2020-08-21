@@ -56,6 +56,9 @@ extension MarvelTarget: TargetType {
 
         switch self {
         case .getComics:
+            params["format"] = "comic"
+            params["format"] = "comic"
+            params["dateDescriptor"] = "thisMonth"
             params["limit"] = 40
             return .requestParameters(parameters: params,
                                       encoding: URLEncoding.default)

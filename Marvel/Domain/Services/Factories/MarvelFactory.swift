@@ -20,8 +20,26 @@ class MarvelFactory {
                     return nil
             }
             return Comic(id: id,
-                             thumbnailURL: convertURLToHttps(thumbnailURL))
+                         thumbnailURL: convertURLToHttps(thumbnailURL),
+                         description: result.description,
+                         creators: createCreators(from: result.creators),
+                         characters: createCharacters(from: result.characters))
         })
+    }
+    
+    private func createCharacters(from response: CharactersResponse?) -> [String] {
+        guard let response = response else { return [] }
+        return response.items?.compactMap { $0.name } ?? []
+    }
+    
+    private func createCreators(from response: CreatorsResponse?) -> [Creator] {
+        guard let response = response else { return [] }
+        return response.items?.compactMap({ creatorResponse in
+            guard let role = creatorResponse.role,
+                let name = creatorResponse.name else { return nil }
+            return Creator(role: role,
+                           name: name)
+        }) ?? []
     }
     
     private func convertURLToHttps(_ url: URL) -> URL? {

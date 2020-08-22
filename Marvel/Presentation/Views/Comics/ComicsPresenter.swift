@@ -54,6 +54,13 @@ class ComicsPresenter: BasePresenter {
         fetchComics()
     }
     
+    func didSelectComicAt(index: Int) {
+        guard let comic = comics[safe: index] else {
+            return
+        }
+        wireframe.comicDetail(comic).present(animated: true)
+    }
+    
     // MARK: - Private methods
     
     private func fetchComics(with searchText: String? = nil) {

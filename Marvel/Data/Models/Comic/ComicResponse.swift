@@ -22,6 +22,8 @@ struct ComicResultResponse: Codable {
     let description: String?
     let creators: CreatorsResponse?
     let characters: CharactersResponse?
+    let title: String?
+    let prices: [PriceResponse]?
 }
 
 struct ComicThumbnailResponse: Codable {
@@ -32,6 +34,11 @@ struct ComicThumbnailResponse: Codable {
         case path
         case thumbnailExtension = "extension"
     }
+}
+
+struct PriceResponse: Codable {
+    let type: String?
+    let price: Double?
 }
 
 struct CreatorsResponse: Codable {

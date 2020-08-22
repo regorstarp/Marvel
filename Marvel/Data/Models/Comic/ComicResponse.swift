@@ -20,7 +20,6 @@ struct ComicDataResponse: Codable {
 struct ComicResultResponse: Codable {
     let id: Int?
     let thumbnail: ComicThumbnailResponse?
-    let description: String?
     let creators: CreatorsResponse?
     let characters: CharactersResponse?
     let title: String?

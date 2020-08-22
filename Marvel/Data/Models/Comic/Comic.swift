@@ -11,7 +11,6 @@ import Foundation
 class Comic {
     let id: Int
     let thumbnailURL: URL?
-    let description: String?
     let creators: [Creator]
     let characters: [String]
     let title: String
@@ -19,14 +18,12 @@ class Comic {
     
     init(id: Int,
          thumbnailURL: URL?,
-         description: String?,
          creators: [Creator],
          characters: [String],
          title: String,
          prices: [Price]) {
         self.id = id
         self.thumbnailURL = thumbnailURL
-        self.description = description
         self.creators = creators
         self.characters = characters
         self.title = title

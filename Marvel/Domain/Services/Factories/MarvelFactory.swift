@@ -24,7 +24,6 @@ class MarvelFactory {
             }
             return Comic(id: id,
                          thumbnailURL: convertURLToHttps(thumbnailURL),
-                         description: result.description,
                          creators: createCreators(from: result.creators),
                          characters: createCharacters(from: result.characters),
                          title: title,

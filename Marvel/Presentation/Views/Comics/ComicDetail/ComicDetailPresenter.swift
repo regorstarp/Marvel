@@ -9,5 +9,6 @@
 import Foundation
 
 class ComicDetailPresenter: BasePresenter {
+    // MARK: - Properties
     var comic: Comic!
 }

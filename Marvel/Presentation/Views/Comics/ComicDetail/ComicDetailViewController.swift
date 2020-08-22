@@ -68,7 +68,8 @@ extension ComicDetailViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForHeaderInSection section: Int) -> String? {
         guard let comicDetailSection = ComicDetailSections(rawValue: section) else {
             return nil
         }
@@ -84,7 +85,8 @@ extension ComicDetailViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comicDetailSection = ComicDetailSections(rawValue: indexPath.section) else {
             return UITableViewCell()
         }
@@ -129,17 +131,14 @@ extension ComicDetailViewController: UITableViewDataSource {
             } else {
                 cell.textLabel?.text = "Price not available"
             }
-            
-            
-            
-            
             return cell
         }
     }
 }
 
 extension ComicDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let comicDetailSection = ComicDetailSections(rawValue: indexPath.section) else {
             return UITableView.automaticDimension
         }
@@ -149,6 +148,5 @@ extension ComicDetailViewController: UITableViewDelegate {
         default:
             return UITableView.automaticDimension
         }
-        
     }
 }

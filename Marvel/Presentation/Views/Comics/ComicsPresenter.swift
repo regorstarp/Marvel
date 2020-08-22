@@ -18,7 +18,6 @@ class ComicsPresenter: BasePresenter {
     // MARK: - Properties
     
     private(set) var comics: [Comic] = []
-    
     private var view: ComicsView? {
         return baseView as? ComicsView
     }

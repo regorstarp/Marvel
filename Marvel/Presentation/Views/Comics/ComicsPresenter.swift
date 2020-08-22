@@ -55,7 +55,7 @@ class ComicsPresenter: BasePresenter {
     func searchBarSearchButtonClicked(with text: String?) {
         guard let searchText = text,
             !searchText.isEmpty else {
-            return
+                return
         }
         comicsList = ComicsList()
         fetchComics(with: searchText)
@@ -123,7 +123,7 @@ class ComicsPresenter: BasePresenter {
                         self.view?.showErrorView(with: "There's been a problem fetching the comic list")
                     } else { //Pagination request, show alert.
                         self.view?.showError(title: "There's been a probem fetching more comics",
-                                              message: nil)
+                                             message: nil)
                     }
                     return
                 }

@@ -99,7 +99,7 @@ extension ComicDetailViewController: UITableViewDataSource {
             }
             cell.imageView?.kf.indicatorType = .activity
             cell.imageView?.kf.setImage(with: presenter.comic.thumbnailURL,
-                                  options: [.transition(.fade(Constants.imageFadeDuration))])
+                                        options: [.transition(.fade(Constants.imageFadeDuration))])
             cell.backgroundColor = .clear
             return cell
             
@@ -127,7 +127,7 @@ extension ComicDetailViewController: UITableViewDataSource {
             }
             cell.detailTextLabel?.text = presenter.comic.prices[safe: indexPath.row]?.type
             if let price = presenter.comic.prices[safe: indexPath.row]?.price {
-               cell.textLabel?.text = "\(price) €"
+                cell.textLabel?.text = "\(price) €"
             } else {
                 cell.textLabel?.text = "Price not available"
             }

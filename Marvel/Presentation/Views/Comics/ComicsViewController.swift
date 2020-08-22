@@ -16,7 +16,7 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
     // MARK: - Properties
     
     @IBOutlet private weak var collectionView: UICollectionView!
-
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -105,8 +105,8 @@ extension ComicsViewController: UICollectionViewDataSource {
         case .comics:
             guard let comic = presenter.comic(at: indexPath.row),
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicCollectionViewCell.identifier,
-                                                                for: indexPath) as? ComicCollectionViewCell else {
-                                                                    return UICollectionViewCell()
+                                                              for: indexPath) as? ComicCollectionViewCell else {
+                                                                return UICollectionViewCell()
             }
             cell.setup(imageURL: comic.thumbnailURL)
             return cell

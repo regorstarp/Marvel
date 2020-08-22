@@ -12,7 +12,7 @@ class SubtitleTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     static let identifier = String(describing: SubtitleTableViewCell.self)
-
+    
     // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

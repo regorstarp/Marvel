@@ -10,6 +10,8 @@ import Foundation
 
 protocol ComicsView: BaseView {
     func reload()
+    func showNoResultsFound()
+    func showErrorView(with message: String)
 }
 
 class ComicsPresenter: BasePresenter {
@@ -34,25 +36,45 @@ class ComicsPresenter: BasePresenter {
         fetchComics()
     }
     
+    // MARK: - Public methods
+    
+    func searchBarSearchButtonClicked(with text: String?) {
+        guard let searchText = text,
+            !searchText.isEmpty else {
+            return
+        }
+        fetchComics(with: searchText)
+    }
+    
+    func searchBarCancelButtonClicked() {
+        fetchComics()
+    }
+    
+    func emptyViewButtonTouchUpInside() {
+        fetchComics()
+    }
+    
     // MARK: - Private methods
     
-    private func fetchComics() {
+    private func fetchComics(with searchText: String? = nil) {
         view?.showLoading()
-        marvelService.getComics()
+        marvelService.getComics(with: searchText)
             .applySchedulers()
             .subscribe(onSuccess: { [weak self] comics in
                 self?.view?.hideLoading()
                 guard let comics = comics else {
-                    self?.view?.showError(title: "There's been a problem",
-                                          message: nil)
+                    self?.view?.showErrorView(with: "There's been a problem fetching the comic list")
                     return
                 }
                 self?.comics = comics
-                self?.view?.reload()
+                if comics.isEmpty {
+                    self?.view?.showNoResultsFound()
+                } else {
+                    self?.view?.reload()
+                }
             }) { [weak self] error in
                 self?.view?.hideLoading()
-                self?.view?.showError(title: "There's been a problem",
-                                      message: error.localizedDescription)
+                self?.view?.showErrorView(with: error.localizedDescription)
         }.disposed(by: disposeBag)
     }
 }

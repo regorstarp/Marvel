@@ -12,8 +12,9 @@ import Moya
 protocol MarvelRepository {
     /// Fetches a list of comics.
     ///
+    /// - Parameter searchText: Optional text used to filter comics by name.
     /// - Returns: List of comics.
-    func getComics() -> Single<[Comic]?>
+    func getComics(with searchText: String?) -> Single<[Comic]?>
 }
 
 class MarvelDataRepository: MarvelRepository {
@@ -26,8 +27,13 @@ class MarvelDataRepository: MarvelRepository {
         self.marvelFactory = marvelfactory
     }
 
-    func getComics() -> Single<[Comic]?> {
-        return genericProvider.request(MarvelTarget.getComics)
+    func getComics(with searchText: String?) -> Single<[Comic]?> {
+        var request: ComicRequest?
+        if let searchText = searchText {
+            request = ComicRequest(searchText: searchText)
+        }
+        
+        return genericProvider.request(MarvelTarget.getComics(request: request))
             .filterSuccessfulStatusCodes()
             .map(ComicResponse.self)
             .flatMap({ [weak self] response in

@@ -30,6 +30,7 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
         navigationItem.searchController = searchController
         navigationItem.searchController?.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController?.searchBar.delegate = self
+        navigationItem.searchController?.searchBar.isHidden = true
     }
     
     private func configureCollectionView() {
@@ -44,6 +45,26 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
 
 extension ComicsViewController: ComicsView {
     func reload() {
+        navigationItem.searchController?.searchBar.isHidden = false
+        collectionView.backgroundView = nil
+        collectionView.reloadData()
+    }
+    
+    func showNoResultsFound() {
+        let emptyView = EmptyView(frame: collectionView.frame)
+        emptyView.setup(with: "No results found")
+        collectionView.backgroundView = emptyView
+        collectionView.reloadData()
+        
+    }
+    
+    func showErrorView(with message: String) {
+        navigationItem.searchController?.searchBar.isHidden = true
+        let emptyView = EmptyView(frame: collectionView.frame)
+        emptyView.setup(with: "There's been a problem loading the comic list",
+                        actionTitle: "Reload",
+                        delegate: self)
+        collectionView.backgroundView = emptyView
         collectionView.reloadData()
     }
 }
@@ -97,6 +118,14 @@ extension ComicsViewController: UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        collectionView.backgroundView = nil
         presenter.searchBarCancelButtonClicked()
+    }
+}
+
+extension ComicsViewController: EmptyViewDelegate {
+    func buttonTouchUpInside() {
+        collectionView.backgroundView = nil
+        presenter.emptyViewButtonTouchUpInside()
     }
 }

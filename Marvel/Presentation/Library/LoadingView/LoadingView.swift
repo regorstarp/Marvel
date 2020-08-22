@@ -9,21 +9,24 @@
 import UIKit
 
 class LoadingView: UIView {
-    
-    private lazy var activityIndicator: UIActivityIndicatorView = {
+
+    private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.style = .medium
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.orange
         addSubview(activityIndicator)
-        activityIndicator.center = center
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor)
+        ])
         activityIndicator.startAnimating()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

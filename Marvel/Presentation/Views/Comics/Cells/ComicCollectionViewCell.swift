@@ -57,6 +57,8 @@ class ComicCollectionViewCell: UICollectionViewCell {
         clipsToBounds = true
         autoresizesSubviews = true
         layer.cornerRadius = Constants.cornerRadius
+        layer.borderColor = UIColor.gray.cgColor
+        layer.borderWidth = 1
         
         configureImageView()
         

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		80301BC5CB294AC68DF8077E /* Pods_MarvelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E8254C63BCE79E17448AB6 /* Pods_MarvelTests.framework */; };
 		C465F157C184D0BB82A43FD4 /* Pods_Marvel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04DF5EC48A30B5C41AF01D2 /* Pods_Marvel.framework */; };
+		DB50464224F0333200F5C6EF /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50464124F0333200F5C6EF /* EmptyView.swift */; };
 		DB874D5224EE91BA009666A3 /* MarvelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5124EE91BA009666A3 /* MarvelService.swift */; };
 		DB874D5B24EE9616009666A3 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5A24EE9616009666A3 /* String+md5.swift */; };
 		DB874D5F24EE9F27009666A3 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5E24EE9F27009666A3 /* DataModule.swift */; };
@@ -21,6 +22,7 @@
 		DB874D7924EEA4E3009666A3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D7824EEA4E3009666A3 /* BaseView.swift */; };
 		DB874D7D24EEDAB4009666A3 /* ComicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D7B24EEDAB4009666A3 /* ComicCollectionViewCell.swift */; };
 		DB874D8324EFC818009666A3 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D8224EFC818009666A3 /* LoadingView.swift */; };
+		DB874D8524EFDF9A009666A3 /* ComicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D8424EFDF9A009666A3 /* ComicRequest.swift */; };
 		DB96735B24ED84B800E81F13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96735A24ED84B800E81F13 /* AppDelegate.swift */; };
 		DB96735D24ED84B800E81F13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96735C24ED84B800E81F13 /* SceneDelegate.swift */; };
 		DB96735F24ED84B800E81F13 /* ComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96735E24ED84B800E81F13 /* ComicsViewController.swift */; };
@@ -54,6 +56,7 @@
 		B04DF5EC48A30B5C41AF01D2 /* Pods_Marvel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B42525D3666EFC592032CA18 /* Pods-Marvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel.release.xcconfig"; path = "Target Support Files/Pods-Marvel/Pods-Marvel.release.xcconfig"; sourceTree = "<group>"; };
 		C59E37BEE4C4164DD90E3528 /* Pods-MarvelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelTests.debug.xcconfig"; path = "Target Support Files/Pods-MarvelTests/Pods-MarvelTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB50464124F0333200F5C6EF /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		DB874D5124EE91BA009666A3 /* MarvelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelService.swift; sourceTree = "<group>"; };
 		DB874D5A24EE9616009666A3 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
 		DB874D5E24EE9F27009666A3 /* DataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModule.swift; sourceTree = "<group>"; };
@@ -66,6 +69,7 @@
 		DB874D7824EEA4E3009666A3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DB874D7B24EEDAB4009666A3 /* ComicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicCollectionViewCell.swift; sourceTree = "<group>"; };
 		DB874D8224EFC818009666A3 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		DB874D8424EFDF9A009666A3 /* ComicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicRequest.swift; sourceTree = "<group>"; };
 		DB96735724ED84B800E81F13 /* Marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB96735A24ED84B800E81F13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB96735C24ED84B800E81F13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,14 @@
 				25E8254C63BCE79E17448AB6 /* Pods_MarvelTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB50464024F0332500F5C6EF /* EmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				DB50464124F0333200F5C6EF /* EmptyView.swift */,
+			);
+			path = EmptyView;
 			sourceTree = "<group>";
 		};
 		DB874D5024EE91AA009666A3 /* MarvelService */ = {
@@ -192,6 +204,7 @@
 		DB874D7224EEA45A009666A3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				DB50464024F0332500F5C6EF /* EmptyView */,
 				DB874D8124EFC80A009666A3 /* LoadingView */,
 				DB874D7324EEA45F009666A3 /* Base */,
 			);
@@ -329,6 +342,7 @@
 			children = (
 				DB96738D24EE71CD00E81F13 /* Comic.swift */,
 				DB96739A24EE7D8400E81F13 /* ComicResponse.swift */,
+				DB874D8424EFDF9A009666A3 /* ComicRequest.swift */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -539,6 +553,8 @@
 				DB874D5224EE91BA009666A3 /* MarvelService.swift in Sources */,
 				DB96735B24ED84B800E81F13 /* AppDelegate.swift in Sources */,
 				DB874D8324EFC818009666A3 /* LoadingView.swift in Sources */,
+				DB50464224F0333200F5C6EF /* EmptyView.swift in Sources */,
+				DB874D8524EFDF9A009666A3 /* ComicRequest.swift in Sources */,
 				DB96738A24EE717300E81F13 /* MarvelRepository.swift in Sources */,
 				DB96735D24ED84B800E81F13 /* SceneDelegate.swift in Sources */,
 				DB874D7524EEA469009666A3 /* BaseViewController.swift in Sources */,

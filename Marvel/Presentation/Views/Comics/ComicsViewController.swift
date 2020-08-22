@@ -81,11 +81,11 @@ extension ComicsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicCollectionViewCell.identifier,
+        guard let comic = presenter.comics[safe: indexPath.row],
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicCollectionViewCell.identifier,
                                                             for: indexPath) as? ComicCollectionViewCell else {
                                                                 return UICollectionViewCell()
         }
-        let comic = presenter.comics[indexPath.row]
         cell.setup(imageURL: comic.thumbnailURL)
         return cell
     }
@@ -94,7 +94,7 @@ extension ComicsViewController: UICollectionViewDataSource {
 extension ComicsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        
+        presenter.didSelectComicAt(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView,

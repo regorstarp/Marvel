@@ -9,6 +9,8 @@
 import Foundation
 
 class MarvelFactory {
+    // MARK: - Public methods
+    
     func createComicList(from response: ComicResponse) -> [Comic]? {
         return response.data?.results?.compactMap({ result -> Comic? in
             guard let id = result.id,
@@ -16,15 +18,29 @@ class MarvelFactory {
                 let thumbnailExtension = result.thumbnail?.thumbnailExtension,
                 let thumbnailURL = URL(string: "\(thumbnailPath).\(thumbnailExtension)"),
                 //ignore comics with no image available
-                !thumbnailPath.contains("image_not_available") else {
+                !thumbnailPath.contains("image_not_available"),
+                let title = result.title else {
                     return nil
             }
             return Comic(id: id,
                          thumbnailURL: convertURLToHttps(thumbnailURL),
                          description: result.description,
                          creators: createCreators(from: result.creators),
-                         characters: createCharacters(from: result.characters))
+                         characters: createCharacters(from: result.characters),
+                         title: title,
+                         prices: createPrices(from: result.prices))
         })
+    }
+    
+    // MARK: - Private methods
+    
+    private func createPrices(from response: [PriceResponse]?) -> [Price] {
+        return response?.compactMap({
+            guard let type = $0.type,
+                let price = $0.price else { return nil }
+            return Price(type: type,
+                         price: price)
+        }) ?? []
     }
     
     private func createCharacters(from response: CharactersResponse?) -> [String] {

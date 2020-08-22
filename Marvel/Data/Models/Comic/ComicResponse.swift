@@ -14,6 +14,7 @@ struct ComicResponse: Codable {
 
 struct ComicDataResponse: Codable {
     let results: [ComicResultResponse]?
+    let total: Int?
 }
 
 struct ComicResultResponse: Codable {

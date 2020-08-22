@@ -12,7 +12,7 @@ class SubtitleTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     static let identifier = String(describing: SubtitleTableViewCell.self)
-
+    
     // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,6 +28,8 @@ class SubtitleTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageView?.kf.cancelDownloadTask()
+        imageView?.image = nil
         textLabel?.text = nil
         detailTextLabel?.text = nil
     }

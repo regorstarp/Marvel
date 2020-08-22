@@ -13,6 +13,7 @@ protocol EmptyViewDelegate: AnyObject {
 }
 
 class EmptyView: UIView {
+    // MARK: - Properties
     
     private let stackView: UIStackView = {
         let stack = UIStackView()
@@ -25,6 +26,8 @@ class EmptyView: UIView {
     
     private weak var delegate: EmptyViewDelegate?
 
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(stackView)
@@ -39,6 +42,8 @@ class EmptyView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Setup
     
     func setup(with title: String,
                actionTitle: String? = nil,
@@ -55,6 +60,8 @@ class EmptyView: UIView {
             self.delegate = delegate
         }
     }
+    
+    // MARK: - Private methods
     
     @objc private func buttonTouchUpInside() {
         delegate?.buttonTouchUpInside()

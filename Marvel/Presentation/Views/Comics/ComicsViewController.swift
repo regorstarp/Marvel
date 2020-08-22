@@ -39,7 +39,8 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .clear
-        collectionView.register(ComicCollectionViewCell.self, forCellWithReuseIdentifier: ComicCollectionViewCell.identifier)
+        collectionView.register(ComicCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ComicCollectionViewCell.identifier)
     }
 }
 
@@ -101,14 +102,20 @@ extension ComicsViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
 
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 10,
+                            left: 10,
+                            bottom: 10,
+                            right: 10)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat =  40
         let collectionViewSize = collectionView.frame.size.width - padding
 
-        return CGSize(width: collectionViewSize, height: view.bounds.size.height * 0.6)
+        return CGSize(width: collectionViewSize,
+                      height: view.bounds.size.height * 0.6)
     }
 }
 

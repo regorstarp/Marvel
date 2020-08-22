@@ -76,6 +76,4 @@ extension MarvelTarget: TargetType {
             return ["Content-Type": "application/json"]
         }
     }
-    
-    
 }

@@ -9,11 +9,11 @@
 import UIKit
 
 class BaseViewController<P: BasePresenter>: UIViewController, BaseView {
+    // MARK: - Properties
+    
     typealias Presenter = P
     var presenter: Presenter!
-    
     private lazy var loadingView = LoadingView(frame: view.frame)
-    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }

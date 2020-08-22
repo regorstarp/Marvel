@@ -9,13 +9,16 @@
 import UIKit
 
 class LoadingView: UIView {
-
+    // MARK: - Properties
+    
     private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.style = .medium
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicatorView
     }()
+    
+    // MARK: - Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)

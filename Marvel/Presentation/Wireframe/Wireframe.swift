@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import SwinjectStoryboard
 
-public protocol Wireframe {
-    func comicDetail(id: Int) -> UIViewController
+protocol Wireframe {
+    func comicDetail(_ comic: Comic) -> Screen
 }
 
-public class WireframeImpl: Wireframe {
-    public func comicDetail(id: Int) -> UIViewController {
-        return UIViewController()
+class WireframeImpl: Wireframe {
+    public func comicDetail(_ comic: Comic) -> Screen {
+        guard let vc = SwinjectStoryboard.defaultContainer.resolve(ComicDetailViewController.self) else {
+            fatalError("Couldn't instantiate ComicDetailViewController")
+        }
+        vc.presenter.comic = comic
+        let navigationController = UINavigationController(rootViewController: vc)
+        return Screen(viewController: navigationController)
     }
 }

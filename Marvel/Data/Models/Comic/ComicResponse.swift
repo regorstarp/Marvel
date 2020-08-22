@@ -19,6 +19,11 @@ struct ComicDataResponse: Codable {
 struct ComicResultResponse: Codable {
     let id: Int?
     let thumbnail: ComicThumbnailResponse?
+    let description: String?
+    let creators: CreatorsResponse?
+    let characters: CharactersResponse?
+    let title: String?
+    let prices: [PriceResponse]?
 }
 
 struct ComicThumbnailResponse: Codable {
@@ -29,4 +34,26 @@ struct ComicThumbnailResponse: Codable {
         case path
         case thumbnailExtension = "extension"
     }
+}
+
+struct PriceResponse: Codable {
+    let type: String?
+    let price: Double?
+}
+
+struct CreatorsResponse: Codable {
+    let items: [CreatorResponse]?
+}
+
+struct CreatorResponse: Codable {
+    let role: String?
+    let name: String?
+}
+
+struct CharactersResponse: Codable {
+    let items: [CharacterResponse]?
+}
+
+struct CharacterResponse: Codable {
+    let name: String?
 }

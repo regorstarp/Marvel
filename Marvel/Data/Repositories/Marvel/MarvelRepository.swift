@@ -12,7 +12,7 @@ import Moya
 protocol MarvelRepository {
     /// Fetches a list of comics.
     ///
-    /// - Parameter searchText: Optional text used to filter comics by name.
+    /// - Parameter searchText: Optional text used to filter comics by title.
     /// - Returns: List of comics.
     func getComics(with searchText: String?) -> Single<[Comic]?>
 }

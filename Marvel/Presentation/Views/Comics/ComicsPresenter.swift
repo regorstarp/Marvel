@@ -10,6 +10,8 @@ import Foundation
 
 protocol ComicsView: BaseView {
     func reload()
+    func showNoResultsFound()
+    func showErrorView(with message: String)
 }
 
 class ComicsPresenter: BasePresenter {
@@ -48,6 +50,10 @@ class ComicsPresenter: BasePresenter {
         fetchComics()
     }
     
+    func emptyViewButtonTouchUpInside() {
+        fetchComics()
+    }
+    
     // MARK: - Private methods
     
     private func fetchComics(with searchText: String? = nil) {
@@ -57,16 +63,18 @@ class ComicsPresenter: BasePresenter {
             .subscribe(onSuccess: { [weak self] comics in
                 self?.view?.hideLoading()
                 guard let comics = comics else {
-                    self?.view?.showError(title: "There's been a problem",
-                                          message: nil)
+                    self?.view?.showErrorView(with: "There's been a problem fetching the comic list")
                     return
                 }
                 self?.comics = comics
-                self?.view?.reload()
+                if comics.isEmpty {
+                    self?.view?.showNoResultsFound()
+                } else {
+                    self?.view?.reload()
+                }
             }) { [weak self] error in
                 self?.view?.hideLoading()
-                self?.view?.showError(title: "There's been a problem",
-                                      message: error.localizedDescription)
+                self?.view?.showErrorView(with: error.localizedDescription)
         }.disposed(by: disposeBag)
     }
 }

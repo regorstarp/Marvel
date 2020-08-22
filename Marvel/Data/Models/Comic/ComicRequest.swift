@@ -9,9 +9,15 @@
 import Foundation
 
 class ComicRequest {
-    let searchText: String
+    let searchText: String?
+    let limit: Int?
+    let offset: Int?
     
-    init(searchText: String) {
+    init(searchText: String?,
+         limit: Int?,
+         offset: Int?) {
         self.searchText = searchText
+        self.limit = limit
+        self.offset = offset
     }
 }

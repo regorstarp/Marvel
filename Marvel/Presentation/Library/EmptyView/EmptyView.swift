@@ -25,7 +25,7 @@ class EmptyView: UIView {
     private let button = UIButton(type: .system)
     
     private weak var delegate: EmptyViewDelegate?
-
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -38,7 +38,7 @@ class EmptyView: UIView {
         stackView.addArrangedSubview(label)
         label.numberOfLines = 2
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

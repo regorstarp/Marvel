@@ -30,7 +30,7 @@ class MarvelDataRepository: MarvelRepository {
         self.genericProvider = genericProvider
         self.marvelFactory = marvelfactory
     }
-
+    
     func getComics(with searchText: String?,
                    limit: Int?,
                    offset: Int?) -> Single<ComicsList?> {
@@ -44,7 +44,7 @@ class MarvelDataRepository: MarvelRepository {
             .flatMap({ [weak self] response in
                 if let comics = self?.marvelFactory.createComicList(from: response) {
                     let comicsList = ComicsList(comics: comics,
-                    totalAvailableInServer: response.data?.total)
+                                                totalAvailableInServer: response.data?.total)
                     return Single.just(comicsList)
                 } else {
                     return Single.just(nil)

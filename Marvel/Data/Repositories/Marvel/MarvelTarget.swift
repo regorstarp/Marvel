@@ -53,7 +53,7 @@ extension MarvelTarget: TargetType {
         params["ts"] = timestamp
         params["apikey"] = MarvelTarget.publicKey
         params["hash"] = hash
-
+        
         switch self {
         case let .getComics(request):
             params["format"] = "comic"

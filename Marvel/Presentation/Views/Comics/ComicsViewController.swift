@@ -39,7 +39,8 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .clear
-        collectionView.register(ComicCollectionViewCell.self, forCellWithReuseIdentifier: ComicCollectionViewCell.identifier)
+        collectionView.register(ComicCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ComicCollectionViewCell.identifier)
     }
 }
 
@@ -81,11 +82,11 @@ extension ComicsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicCollectionViewCell.identifier,
+        guard let comic = presenter.comics[safe: indexPath.row],
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ComicCollectionViewCell.identifier,
                                                             for: indexPath) as? ComicCollectionViewCell else {
                                                                 return UICollectionViewCell()
         }
-        let comic = presenter.comics[indexPath.row]
         cell.setup(imageURL: comic.thumbnailURL)
         return cell
     }
@@ -94,21 +95,27 @@ extension ComicsViewController: UICollectionViewDataSource {
 extension ComicsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
-        
+        presenter.didSelectComicAt(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
 
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 10,
+                            left: 10,
+                            bottom: 10,
+                            right: 10)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat =  40
         let collectionViewSize = collectionView.frame.size.width - padding
 
-        return CGSize(width: collectionViewSize, height: view.bounds.size.height * 0.6)
+        return CGSize(width: collectionViewSize,
+                      height: view.bounds.size.height * 0.6)
     }
 }
 

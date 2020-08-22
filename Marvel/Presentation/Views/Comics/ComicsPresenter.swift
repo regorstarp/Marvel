@@ -18,7 +18,6 @@ class ComicsPresenter: BasePresenter {
     // MARK: - Properties
     
     private(set) var comics: [Comic] = []
-    
     private var view: ComicsView? {
         return baseView as? ComicsView
     }
@@ -52,6 +51,13 @@ class ComicsPresenter: BasePresenter {
     
     func emptyViewButtonTouchUpInside() {
         fetchComics()
+    }
+    
+    func didSelectComicAt(index: Int) {
+        guard let comic = comics[safe: index] else {
+            return
+        }
+        wireframe.comicDetail(comic).present(animated: true)
     }
     
     // MARK: - Private methods

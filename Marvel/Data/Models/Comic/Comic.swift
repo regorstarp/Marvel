@@ -11,10 +11,47 @@ import Foundation
 class Comic {
     let id: Int
     let thumbnailURL: URL?
+    let description: String?
+    let creators: [Creator]
+    let characters: [String]
+    let title: String
+    let prices: [Price]
     
     init(id: Int,
-         thumbnailURL: URL?) {
+         thumbnailURL: URL?,
+         description: String?,
+         creators: [Creator],
+         characters: [String],
+         title: String,
+         prices: [Price]) {
         self.id = id
         self.thumbnailURL = thumbnailURL
+        self.description = description
+        self.creators = creators
+        self.characters = characters
+        self.title = title
+        self.prices = prices
+    }
+}
+
+class Creator: Codable {
+    let role: String
+    let name: String
+    
+    init(role: String,
+         name: String) {
+        self.role = role
+        self.name = name
+    }
+}
+
+class Price: Codable {
+    let type: String
+    let price: Double
+    
+    init(type: String,
+         price: Double) {
+        self.type = type
+        self.price = price
     }
 }

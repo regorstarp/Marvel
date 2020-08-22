@@ -17,6 +17,8 @@
 		DB50465E24F1242500F5C6EF /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50465D24F1242500F5C6EF /* Screen.swift */; };
 		DB50466024F124F500F5C6EF /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50465F24F124F500F5C6EF /* UIApplication+TopViewController.swift */; };
 		DB50466324F12E8700F5C6EF /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466224F12E8700F5C6EF /* SubtitleTableViewCell.swift */; };
+		DB50466624F1779200F5C6EF /* ComicsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466524F1779200F5C6EF /* ComicsList.swift */; };
+		DB50466924F1849300F5C6EF /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466824F1849300F5C6EF /* LoadingCollectionViewCell.swift */; };
 		DB874D5224EE91BA009666A3 /* MarvelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5124EE91BA009666A3 /* MarvelService.swift */; };
 		DB874D5B24EE9616009666A3 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5A24EE9616009666A3 /* String+md5.swift */; };
 		DB874D5F24EE9F27009666A3 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5E24EE9F27009666A3 /* DataModule.swift */; };
@@ -71,6 +73,8 @@
 		DB50465D24F1242500F5C6EF /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		DB50465F24F124F500F5C6EF /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		DB50466224F12E8700F5C6EF /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
+		DB50466524F1779200F5C6EF /* ComicsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsList.swift; sourceTree = "<group>"; };
+		DB50466824F1849300F5C6EF /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		DB874D5124EE91BA009666A3 /* MarvelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelService.swift; sourceTree = "<group>"; };
 		DB874D5A24EE9616009666A3 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
 		DB874D5E24EE9F27009666A3 /* DataModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModule.swift; sourceTree = "<group>"; };
@@ -173,6 +177,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		DB50466724F1847500F5C6EF /* LoadingCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				DB50466824F1849300F5C6EF /* LoadingCollectionViewCell.swift */,
+			);
+			path = LoadingCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		DB874D5024EE91AA009666A3 /* MarvelService */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +253,7 @@
 		DB874D7224EEA45A009666A3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				DB50466724F1847500F5C6EF /* LoadingCollectionViewCell */,
 				DB50464024F0332500F5C6EF /* EmptyView */,
 				DB874D8124EFC80A009666A3 /* LoadingView */,
 				DB874D7324EEA45F009666A3 /* Base */,
@@ -380,6 +393,7 @@
 				DB96738D24EE71CD00E81F13 /* Comic.swift */,
 				DB96739A24EE7D8400E81F13 /* ComicResponse.swift */,
 				DB874D8424EFDF9A009666A3 /* ComicRequest.swift */,
+				DB50466524F1779200F5C6EF /* ComicsList.swift */,
 			);
 			path = Comic;
 			sourceTree = "<group>";
@@ -591,6 +605,7 @@
 				DB50465324F11F0B00F5C6EF /* ComicDetailPresenter.swift in Sources */,
 				DB874D5224EE91BA009666A3 /* MarvelService.swift in Sources */,
 				DB96735B24ED84B800E81F13 /* AppDelegate.swift in Sources */,
+				DB50466624F1779200F5C6EF /* ComicsList.swift in Sources */,
 				DB874D8324EFC818009666A3 /* LoadingView.swift in Sources */,
 				DB50464224F0333200F5C6EF /* EmptyView.swift in Sources */,
 				DB874D8524EFDF9A009666A3 /* ComicRequest.swift in Sources */,
@@ -617,6 +632,7 @@
 				DB50466324F12E8700F5C6EF /* SubtitleTableViewCell.swift in Sources */,
 				DB96739B24EE7D8400E81F13 /* ComicResponse.swift in Sources */,
 				DB874D5B24EE9616009666A3 /* String+md5.swift in Sources */,
+				DB50466924F1849300F5C6EF /* LoadingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

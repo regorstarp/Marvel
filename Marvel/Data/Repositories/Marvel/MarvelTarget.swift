@@ -12,7 +12,7 @@ enum MarvelTarget {
     static private let publicKey = "659aadca6e5aa712c59235a84be22219"
     static private let privateKey = "bf9a9cbe6e4d3f12ab20decbc108f4ff1ab36459"
     
-    case getComics(request: ComicRequest?)
+    case getComics(request: ComicRequest)
 }
 
 // MARK: TargetType Protocol Implementation
@@ -53,16 +53,24 @@ extension MarvelTarget: TargetType {
         params["ts"] = timestamp
         params["apikey"] = MarvelTarget.publicKey
         params["hash"] = hash
-
+        
         switch self {
         case let .getComics(request):
             params["format"] = "comic"
             params["format"] = "comic"
             params["dateDescriptor"] = "thisMonth"
-            params["limit"] = 40
             
-            if let request = request {
-                params["titleStartsWith"] = request.searchText
+            if let searchText = request.searchText,
+                !searchText.isEmpty {
+                params["titleStartsWith"] = searchText
+            }
+            
+            request.limit.map {
+                params["limit"] = $0
+            }
+            
+            request.offset.map {
+                params["offset"] = $0
             }
             
             return .requestParameters(parameters: params,

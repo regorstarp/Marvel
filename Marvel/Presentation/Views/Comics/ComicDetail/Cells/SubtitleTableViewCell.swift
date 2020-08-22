@@ -28,6 +28,8 @@ class SubtitleTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageView?.kf.cancelDownloadTask()
+        imageView?.image = nil
         textLabel?.text = nil
         detailTextLabel?.text = nil
     }

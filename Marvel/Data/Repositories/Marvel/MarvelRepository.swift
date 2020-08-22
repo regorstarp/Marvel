@@ -13,8 +13,12 @@ protocol MarvelRepository {
     /// Fetches a list of comics.
     ///
     /// - Parameter searchText: Optional text used to filter comics by title.
+    /// - Parameter limit: The optional requested result limit (number of items requeted) of the call.
+    /// - Parameter offset: The optional requested offset (number of skipped results) of the call.
     /// - Returns: List of comics.
-    func getComics(with searchText: String?) -> Single<[Comic]?>
+    func getComics(with searchText: String?,
+                   limit: Int?,
+                   offset: Int?) -> Single<ComicsList?>
 }
 
 class MarvelDataRepository: MarvelRepository {
@@ -27,18 +31,24 @@ class MarvelDataRepository: MarvelRepository {
         self.marvelFactory = marvelfactory
     }
 
-    func getComics(with searchText: String?) -> Single<[Comic]?> {
-        var request: ComicRequest?
-        if let searchText = searchText {
-            request = ComicRequest(searchText: searchText)
-        }
+    func getComics(with searchText: String?,
+                   limit: Int?,
+                   offset: Int?) -> Single<ComicsList?> {
+        let request = ComicRequest(searchText: searchText,
+                                   limit: limit,
+                                   offset: offset)
         
         return genericProvider.request(MarvelTarget.getComics(request: request))
             .filterSuccessfulStatusCodes()
             .map(ComicResponse.self)
             .flatMap({ [weak self] response in
-                let comics = self?.marvelFactory.createComicList(from: response)
-                return Single.just(comics)
+                if let comics = self?.marvelFactory.createComicList(from: response) {
+                    let comicsList = ComicsList(comics: comics,
+                    totalAvailableInServer: response.data?.total)
+                    return Single.just(comicsList)
+                } else {
+                    return Single.just(nil)
+                }
             })
     }
 }

@@ -10,19 +10,19 @@ import Swinject
 
 class DataModule {
     static func setup(_ defaultContainer: Container) {
-        resolveRepositories(defaultContainer)
         resolveFactories(defaultContainer)
+        resolveRepositories(defaultContainer)
         resolveProviders(defaultContainer)
         resolveServices(defaultContainer)
     }
     
-    static func resolveRepositories(_ defaultContainer: Container) {
+    static func resolveFactories(_ defaultContainer: Container) {
         defaultContainer.register(MarvelFactory.self) { _ in
             MarvelFactory()
         }
     }
     
-    static func resolveFactories(_ defaultContainer: Container) {
+    static func resolveRepositories(_ defaultContainer: Container) {
         defaultContainer.register(MarvelRepository.self) { r in
             MarvelDataRepository(marvelfactory: r.resolve(MarvelFactory.self)!,
                                  genericProvider: r.resolve(GenericApiProvider.self)!)

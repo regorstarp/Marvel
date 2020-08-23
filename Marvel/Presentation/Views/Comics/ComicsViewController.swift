@@ -145,9 +145,9 @@ extension ComicsViewController: UICollectionViewDelegateFlowLayout {
         
         switch comicsViewSection {
         case .comics:
-            
             return CGSize(width: collectionViewSize,
                           height: view.bounds.size.height * 0.6)
+            
         default:
             return CGSize(width: collectionViewSize, height: 80)
         }

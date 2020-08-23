@@ -121,7 +121,7 @@ class ComicsPresenter: BasePresenter {
                 guard let comicsList = comicsList else {
                     if self.comicsList.comics.isEmpty { //The initial request failed, show empty state.
                         self.view?.showErrorView(with: "There's been a problem fetching the comic list")
-                    } else { //Pagination request, show alert.
+                    } else { //Pagination request failed, show alert.
                         self.view?.showError(title: "There's been a probem fetching more comics",
                                              message: nil)
                     }
@@ -132,12 +132,13 @@ class ComicsPresenter: BasePresenter {
                 self.comicsList.comics.append(contentsOf: comicsList.comics)
                 self.comicsList.totalAvailableInServer = comicsList.totalAvailableInServer
                 
-                //If the server returns the total count of available comics, we check that to find out if there's more comics available to request.
                 if self.comicsList.comics.isEmpty {
                     self.hasMoreComicsAvailableToRequest = false
                 } else if let totalAvailableFromServer = self.comicsList.totalAvailableInServer {
+                    //If the server returns the total count of available comics, we check that to find out if there's more comics available to request.
                     self.hasMoreComicsAvailableToRequest = self.comicsList.comics.count < totalAvailableFromServer
-                } else { //If the server doesn't return the total count of available comics, we assume there's more comics to request if we recieve a full page of comics.
+                } else {
+                    //If the server doesn't return the total count of available comics, we assume there's more comics to request if we recieve a full page of comics.
                     self.hasMoreComicsAvailableToRequest = comicsList.comics.count == Constants.pageSize
                 }
                 

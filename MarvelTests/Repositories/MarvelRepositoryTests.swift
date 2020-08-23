@@ -6,8 +6,6 @@
 //  Copyright © 2020 roger. All rights reserved.
 //
 
-import Foundation
-
 import XCTest
 import RxSwift
 import Moya

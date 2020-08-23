@@ -61,7 +61,6 @@ class ComicCollectionViewCell: UICollectionViewCell {
         layer.borderWidth = 1
         
         configureImageView()
-        
         setupConstraints()
     }
     

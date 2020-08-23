@@ -63,7 +63,7 @@ extension MarvelTarget: TargetType {
         switch self {
         case let .getComics(request):
             params["format"] = "comic"
-            params["format"] = "comic"
+            params["formatType"] = "comic"
             params["dateDescriptor"] = "thisMonth"
             
             if let searchText = request.searchText,

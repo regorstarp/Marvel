@@ -7,10 +7,11 @@
 //
 
 import XCTest
+import Swinject
 @testable import Marvel
 
 class MarvelFactoryTests: XCTestCase {
-    let marvelFactory = MarvelFactory()
+    var marvelFactory: MarvelFactory?
     
     //Mock responses
     let mockPricesResponse = [PriceResponse(type: "printPrice",
@@ -32,7 +33,16 @@ class MarvelFactoryTests: XCTestCase {
     let expectedThumbnailURLHttps = URL(string: "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5f3d36c292e61.jpg")
     var expectedComics: [Comic] = []
     
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
+        let container = Container()
+        container.register(MarvelFactory.self) { _ in
+            MarvelFactory()
+        }
+        marvelFactory = container.resolve(MarvelFactory.self)
+        XCTAssertNotNil(marvelFactory, "Failed to resolve MarvelRepository")
+        
+        
         mockComicsResultResponse = [ComicResultResponse(id: 1234,
                                                         thumbnail: mockThumbnailResponse,
                                                         creators: mockCreatorsResponse,
@@ -52,7 +62,7 @@ class MarvelFactoryTests: XCTestCase {
         let mockComicDataResponse = ComicDataResponse(results: mockComicsResultResponse,
                                                       total: 100)
         let mockComicResponse = ComicResponse(data: mockComicDataResponse)
-        let factoryComicsList = marvelFactory.createComicList(from: mockComicResponse)
+        let factoryComicsList = marvelFactory?.createComicList(from: mockComicResponse)
         
         let expectedComicsList = ComicsList(comics: expectedComics,
                                             totalAvailableInServer: 100)
@@ -61,31 +71,31 @@ class MarvelFactoryTests: XCTestCase {
     }
     
     func testCreateComics() throws {
-        let factoryComics = marvelFactory.createComics(from: mockComicsResultResponse)
+        let factoryComics = marvelFactory?.createComics(from: mockComicsResultResponse)
         XCTAssertNotNil(factoryComics)
         XCTAssertEqual(expectedComics, factoryComics)
     }
     
     func testCreatePrices() throws {
-        let factoryPrices = marvelFactory.createPrices(from: mockPricesResponse)
+        let factoryPrices = marvelFactory?.createPrices(from: mockPricesResponse)
         XCTAssertNotNil(factoryPrices)
         XCTAssertEqual(expectedPrices, factoryPrices)
     }
     
     func testCreateCreators() throws {
-        let factoryCreators = marvelFactory.createCreators(from: mockCreatorsResponse)
+        let factoryCreators = marvelFactory?.createCreators(from: mockCreatorsResponse)
         XCTAssertNotNil(factoryCreators)
         XCTAssertEqual(expectedCreators, factoryCreators)
     }
     
     func testCreateCharacters() throws {
-        let factoryCharacters = marvelFactory.createCharacters(from: mockCharactersResponse)
+        let factoryCharacters = marvelFactory?.createCharacters(from: mockCharactersResponse)
         XCTAssertNotNil(factoryCharacters)
         XCTAssertEqual(expectedCharacters, factoryCharacters)
     }
     
     func testCreateThumbnail() throws {
-        let factoryThumbnailURL = marvelFactory.createThumbnailURL(from: mockThumbnailResponse)
+        let factoryThumbnailURL = marvelFactory?.createThumbnailURL(from: mockThumbnailResponse)
         XCTAssertNotNil(expectedThumbnailURLHttp)
         XCTAssertEqual(expectedThumbnailURLHttp, factoryThumbnailURL)
     }

@@ -11,24 +11,41 @@ import Foundation
 import XCTest
 import RxSwift
 import Moya
+import Swinject
 @testable import Marvel
 
 class MarvelRepositoryTests: XCTestCase {
     
     var disposeBag = DisposeBag()
     
+    override func setUp() {
+        super.setUp()
+        disposeBag = DisposeBag()
+    }
+    
     func testGetComicsSuccessfully() throws {
-        let stubbingProvider = MoyaProvider<MultiTarget>(stubClosure: MoyaProvider.immediatelyStub)
-        let genericProviderMock = GenericApiProvider(provider: stubbingProvider)
-        let marvelFactory = MarvelFactory()
-        let marvelRepositoryMock = MarvelDataRepository(marvelfactory: marvelFactory,
-                                                        genericProvider: genericProviderMock)
-        
+        // Dependency injection
+        let container = Container()
+        container.register(MarvelFactory.self) { _ in
+            MarvelFactory()
+        }
+        container.register(GenericApiProvider.self) { _ in
+            let stubbingProvider = MoyaProvider<MultiTarget>(stubClosure: MoyaProvider.immediatelyStub)
+            return GenericApiProvider(provider: stubbingProvider)
+        }
+        container.register(MarvelRepository.self) { r in
+            MarvelDataRepository(marvelfactory: r.resolve(MarvelFactory.self)!,
+                                 genericProvider: r.resolve(GenericApiProvider.self)!)
+        }
+        guard let marvelRepository = container.resolve(MarvelRepository.self) else {
+            XCTFail("Failed to resolve MarvelRepository")
+            return
+        }
         
         let expectation = self.expectation(description: "Fetch comics success expectation")
-        marvelRepositoryMock.getComics(with: nil,
-                                        limit: 20,
-                                        offset: 0)
+        marvelRepository.getComics(with: nil,
+                                   limit: 20,
+                                   offset: 0)
             .subscribe(onSuccess: { comicsList in
                 if comicsList != nil {
                     expectation.fulfill()
@@ -38,6 +55,11 @@ class MarvelRepositoryTests: XCTestCase {
     }
     
     func testGetComicsError() throws {
+        //Dependecy injection
+        let container = Container()
+        container.register(MarvelFactory.self) { _ in
+            MarvelFactory()
+        }
         let serverErrorEndpointClosure = { (target: MultiTarget) -> Endpoint in
             return Endpoint(url: URL(target: target).absoluteString,
                             sampleResponseClosure: { .networkResponse(500, Data()) },
@@ -45,18 +67,24 @@ class MarvelRepositoryTests: XCTestCase {
                             task: target.task,
                             httpHeaderFields: target.headers)
         }
-        
-        let stubbingProvider = MoyaProvider<MultiTarget>(endpointClosure: serverErrorEndpointClosure ,stubClosure: MoyaProvider.immediatelyStub)
-        let genericProviderMock = GenericApiProvider(provider: stubbingProvider)
-        let marvelFactory = MarvelFactory()
-        let marvelRepositoryMock = MarvelDataRepository(marvelfactory: marvelFactory,
-                                                        genericProvider: genericProviderMock)
-        
+        container.register(GenericApiProvider.self) { _ in
+            let stubbingProvider = MoyaProvider<MultiTarget>(endpointClosure: serverErrorEndpointClosure,
+                                                             stubClosure: MoyaProvider.immediatelyStub)
+            return GenericApiProvider(provider: stubbingProvider)
+        }
+        container.register(MarvelRepository.self) { r in
+            MarvelDataRepository(marvelfactory: r.resolve(MarvelFactory.self)!,
+                                 genericProvider: r.resolve(GenericApiProvider.self)!)
+        }
+        guard let marvelRepository = container.resolve(MarvelRepository.self) else {
+            XCTFail("Failed to resolve MarvelRepository")
+            return
+        }
         
         let expectation = self.expectation(description: "Fetch comics error expectation")
-        marvelRepositoryMock.getComics(with: nil,
-                                        limit: 20,
-                                        offset: 0)
+        marvelRepository.getComics(with: nil,
+                                   limit: 20,
+                                   offset: 0)
             .subscribe(onSuccess: nil, onError: { error in
                 expectation.fulfill()
             }).disposed(by: disposeBag)

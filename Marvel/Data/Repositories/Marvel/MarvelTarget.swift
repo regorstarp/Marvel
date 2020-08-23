@@ -9,8 +9,9 @@
 import Moya
 
 enum MarvelTarget {
-    static private let publicKey = "659aadca6e5aa712c59235a84be22219"
-    static private let privateKey = "bf9a9cbe6e4d3f12ab20decbc108f4ff1ab36459"
+    //I leave the api keys here so it's easier for the reviewer to run the project. Ideally this keys should be hidden in a config file included in the .gitignore
+    static private let publicKey = "ff61d071469b68affc9ee2cb098c7acc"
+    static private let privateKey = "f1919541c2f1d9b43608a0cb51512af3020941bf"
     
     case getComics(request: ComicRequest)
 }

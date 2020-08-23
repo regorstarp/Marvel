@@ -14,48 +14,52 @@ import Moya
 @testable import Marvel
 
 class MarvelRepositoryTests: XCTestCase {
-
-    var marvelRepositoryMock: MarvelRepositoryMock?
+    
     var disposeBag = DisposeBag()
-
-    override func setUpWithError() throws {
+    
+    func testGetComicsSuccessfully() throws {
         let stubbingProvider = MoyaProvider<MultiTarget>(stubClosure: MoyaProvider.immediatelyStub)
         let genericProviderMock = GenericApiProvider(provider: stubbingProvider)
         let marvelFactory = MarvelFactory()
-        marvelRepositoryMock = MarvelRepositoryMock(marvelfactory: marvelFactory,
-                                                    genericProvider: genericProviderMock)
-        disposeBag = DisposeBag()
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testGetComicsSuccessfully() throws {
-        let expectation = self.expectation(description: "Fetch books scuccesfully expectation")
-        marvelRepositoryMock?.getComicsResultToBeReturned = Single.just(ComicsList())
-        marvelRepositoryMock?.getComics(with: nil,
-                                    limit: 20,
-                                    offset: 0)
+        let marvelRepositoryMock = MarvelDataRepository(marvelfactory: marvelFactory,
+                                                        genericProvider: genericProviderMock)
+        
+        
+        let expectation = self.expectation(description: "Fetch comics success expectation")
+        marvelRepositoryMock.getComics(with: nil,
+                                        limit: 20,
+                                        offset: 0)
             .subscribe(onSuccess: { comicsList in
                 if comicsList != nil {
                     expectation.fulfill()
                 }
             }, onError: nil).disposed(by: disposeBag)
-        waitForExpectations(timeout: 2.0, handler: nil)
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
     
-    func testGetComicsNil() throws {
-        let expectation = self.expectation(description: "Fetch books nil expectation")
-        marvelRepositoryMock?.getComicsResultToBeReturned = Single.just(nil)
-        marvelRepositoryMock?.getComics(with: nil,
-                                    limit: 20,
-                                    offset: 0)
-            .subscribe(onSuccess: { comicsList in
-                if comicsList == nil {
-                    expectation.fulfill()
-                }
-            }, onError: nil).disposed(by: disposeBag)
-        waitForExpectations(timeout: 2.0, handler: nil)
+    func testGetComicsError() throws {
+        let serverErrorEndpointClosure = { (target: MultiTarget) -> Endpoint in
+            return Endpoint(url: URL(target: target).absoluteString,
+                            sampleResponseClosure: { .networkResponse(500, Data()) },
+                            method: target.method,
+                            task: target.task,
+                            httpHeaderFields: target.headers)
+        }
+        
+        let stubbingProvider = MoyaProvider<MultiTarget>(endpointClosure: serverErrorEndpointClosure ,stubClosure: MoyaProvider.immediatelyStub)
+        let genericProviderMock = GenericApiProvider(provider: stubbingProvider)
+        let marvelFactory = MarvelFactory()
+        let marvelRepositoryMock = MarvelDataRepository(marvelfactory: marvelFactory,
+                                                        genericProvider: genericProviderMock)
+        
+        
+        let expectation = self.expectation(description: "Fetch comics error expectation")
+        marvelRepositoryMock.getComics(with: nil,
+                                        limit: 20,
+                                        offset: 0)
+            .subscribe(onSuccess: nil, onError: { error in
+                expectation.fulfill()
+            }).disposed(by: disposeBag)
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
 }

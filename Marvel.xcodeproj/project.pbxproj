@@ -19,7 +19,6 @@
 		DB50466324F12E8700F5C6EF /* SubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466224F12E8700F5C6EF /* SubtitleTableViewCell.swift */; };
 		DB50466624F1779200F5C6EF /* ComicsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466524F1779200F5C6EF /* ComicsList.swift */; };
 		DB50466924F1849300F5C6EF /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466824F1849300F5C6EF /* LoadingCollectionViewCell.swift */; };
-		DB50466B24F1B4AB00F5C6EF /* MarvelRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466A24F1B4AB00F5C6EF /* MarvelRepositoryMock.swift */; };
 		DB50467024F1BB0600F5C6EF /* ErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50466F24F1BB0600F5C6EF /* ErrorMock.swift */; };
 		DB50467724F1BCD300F5C6EF /* MarvelFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50467624F1BCD300F5C6EF /* MarvelFactoryTests.swift */; };
 		DB50467A24F1BEA200F5C6EF /* Comics.json in Resources */ = {isa = PBXBuildFile; fileRef = DB50467924F1BEA200F5C6EF /* Comics.json */; };
@@ -29,8 +28,8 @@
 		DB50468524F277C400F5C6EF /* DecodingJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50468424F277C400F5C6EF /* DecodingJSONTests.swift */; };
 		DB50468724F27D4D00F5C6EF /* Thumbnail.json in Resources */ = {isa = PBXBuildFile; fileRef = DB50468624F27D4D00F5C6EF /* Thumbnail.json */; };
 		DB50468C24F2896100F5C6EF /* ComicsList.json in Resources */ = {isa = PBXBuildFile; fileRef = DB50468B24F2896100F5C6EF /* ComicsList.json */; };
-		DB50468E24F28F0500F5C6EF /* MarvelServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50468D24F28F0500F5C6EF /* MarvelServiceMock.swift */; };
 		DB50469124F28FD800F5C6EF /* MarvelServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB50469024F28FD800F5C6EF /* MarvelServiceTests.swift */; };
+		DB7109F124F2AFE4005D88F1 /* ComicsList.json in Resources */ = {isa = PBXBuildFile; fileRef = DB50468B24F2896100F5C6EF /* ComicsList.json */; };
 		DB874D5224EE91BA009666A3 /* MarvelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5124EE91BA009666A3 /* MarvelService.swift */; };
 		DB874D5B24EE9616009666A3 /* String+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5A24EE9616009666A3 /* String+md5.swift */; };
 		DB874D5F24EE9F27009666A3 /* DataModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB874D5E24EE9F27009666A3 /* DataModule.swift */; };
@@ -86,7 +85,6 @@
 		DB50466224F12E8700F5C6EF /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		DB50466524F1779200F5C6EF /* ComicsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsList.swift; sourceTree = "<group>"; };
 		DB50466824F1849300F5C6EF /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
-		DB50466A24F1B4AB00F5C6EF /* MarvelRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelRepositoryMock.swift; sourceTree = "<group>"; };
 		DB50466F24F1BB0600F5C6EF /* ErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMock.swift; sourceTree = "<group>"; };
 		DB50467624F1BCD300F5C6EF /* MarvelFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelFactoryTests.swift; sourceTree = "<group>"; };
 		DB50467924F1BEA200F5C6EF /* Comics.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Comics.json; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 		DB50468424F277C400F5C6EF /* DecodingJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingJSONTests.swift; sourceTree = "<group>"; };
 		DB50468624F27D4D00F5C6EF /* Thumbnail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Thumbnail.json; sourceTree = "<group>"; };
 		DB50468B24F2896100F5C6EF /* ComicsList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ComicsList.json; sourceTree = "<group>"; };
-		DB50468D24F28F0500F5C6EF /* MarvelServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelServiceMock.swift; sourceTree = "<group>"; };
 		DB50469024F28FD800F5C6EF /* MarvelServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelServiceTests.swift; sourceTree = "<group>"; };
 		DB874D5124EE91BA009666A3 /* MarvelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelService.swift; sourceTree = "<group>"; };
 		DB874D5A24EE9616009666A3 /* String+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+md5.swift"; sourceTree = "<group>"; };
@@ -210,9 +207,7 @@
 		DB50466C24F1B5AE00F5C6EF /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				DB50466A24F1B4AB00F5C6EF /* MarvelRepositoryMock.swift */,
 				DB50466F24F1BB0600F5C6EF /* ErrorMock.swift */,
-				DB50468D24F28F0500F5C6EF /* MarvelServiceMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -592,6 +587,7 @@
 				DB96736724ED84B900E81F13 /* LaunchScreen.storyboard in Resources */,
 				DB96736424ED84B900E81F13 /* Assets.xcassets in Resources */,
 				DB96736224ED84B800E81F13 /* Main.storyboard in Resources */,
+				DB7109F124F2AFE4005D88F1 /* ComicsList.json in Resources */,
 				DB50465124F11EFC00F5C6EF /* ComicDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -719,9 +715,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB50468E24F28F0500F5C6EF /* MarvelServiceMock.swift in Sources */,
 				DB50468524F277C400F5C6EF /* DecodingJSONTests.swift in Sources */,
-				DB50466B24F1B4AB00F5C6EF /* MarvelRepositoryMock.swift in Sources */,
 				DB50469124F28FD800F5C6EF /* MarvelServiceTests.swift in Sources */,
 				DB96739E24EE878300E81F13 /* MarvelRepositoryTests.swift in Sources */,
 				DB50467024F1BB0600F5C6EF /* ErrorMock.swift in Sources */,

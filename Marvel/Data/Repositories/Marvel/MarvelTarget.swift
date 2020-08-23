@@ -42,7 +42,13 @@ extension MarvelTarget: TargetType {
     var sampleData: Data {
         switch self {
         case .getComics:
-            return "Example".data(using: .utf8)!
+            //We need create a test class that inherits from NSObject to find the Bundle.
+            class TestClass: NSObject {}
+            guard let json = Bundle(for: TestClass.self).url(forResource: "ComicsList.json", withExtension: nil),
+                let data = try? Data(contentsOf: json) else {
+                    return Data()
+            }
+            return data
         }
     }
     

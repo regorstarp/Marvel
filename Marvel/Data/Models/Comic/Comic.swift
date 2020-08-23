@@ -11,7 +11,6 @@ import Foundation
 class Comic {
     let id: Int
     let thumbnailURL: URL?
-    let description: String?
     let creators: [Creator]
     let characters: [String]
     let title: String
@@ -19,18 +18,27 @@ class Comic {
     
     init(id: Int,
          thumbnailURL: URL?,
-         description: String?,
          creators: [Creator],
          characters: [String],
          title: String,
          prices: [Price]) {
         self.id = id
         self.thumbnailURL = thumbnailURL
-        self.description = description
         self.creators = creators
         self.characters = characters
         self.title = title
         self.prices = prices
+    }
+}
+
+extension Comic: Equatable {
+    static func == (lhs: Comic, rhs: Comic) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.thumbnailURL == rhs.thumbnailURL &&
+            lhs.creators == rhs.creators &&
+            lhs.characters == rhs.characters &&
+            lhs.title == rhs.title &&
+            lhs.prices == rhs.prices
     }
 }
 
@@ -45,6 +53,13 @@ class Creator: Codable {
     }
 }
 
+extension Creator: Equatable {
+    static func == (lhs: Creator, rhs: Creator) -> Bool {
+        return lhs.role == rhs.role &&
+            lhs.name == rhs.name
+    }
+}
+
 class Price: Codable {
     let type: String
     let price: Double
@@ -53,5 +68,12 @@ class Price: Codable {
          price: Double) {
         self.type = type
         self.price = price
+    }
+}
+
+extension Price: Equatable {
+    static func == (lhs: Price, rhs: Price) -> Bool {
+        return lhs.price == rhs.price &&
+            lhs.type == rhs.type
     }
 }

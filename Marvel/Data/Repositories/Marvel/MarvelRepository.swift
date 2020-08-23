@@ -42,13 +42,8 @@ class MarvelDataRepository: MarvelRepository {
             .filterSuccessfulStatusCodes()
             .map(ComicResponse.self)
             .flatMap({ [weak self] response in
-                if let comics = self?.marvelFactory.createComicList(from: response) {
-                    let comicsList = ComicsList(comics: comics,
-                                                totalAvailableInServer: response.data?.total)
-                    return Single.just(comicsList)
-                } else {
-                    return Single.just(nil)
-                }
+                let comics = self?.marvelFactory.createComicList(from: response)
+                return Single.just(comics)
             })
     }
 }

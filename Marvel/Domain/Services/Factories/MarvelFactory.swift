@@ -11,20 +11,23 @@ import Foundation
 class MarvelFactory {
     // MARK: - Public methods
     
-    func createComicList(from response: ComicResponse) -> [Comic]? {
-        return response.data?.results?.compactMap({ result -> Comic? in
+    func createComicList(from response: ComicResponse) -> ComicsList? {
+        guard let comics = createComics(from: response.data?.results) else { return nil }
+        return ComicsList(comics: comics,
+                          totalAvailableInServer: response.data?.total)
+    }
+    
+    func createComics(from response: [ComicResultResponse]?) -> [Comic]? {
+        return response?.compactMap({ result -> Comic? in
             guard let id = result.id,
-                let thumbnailPath = result.thumbnail?.path,
-                let thumbnailExtension = result.thumbnail?.thumbnailExtension,
-                let thumbnailURL = URL(string: "\(thumbnailPath).\(thumbnailExtension)"),
+                let thumbnailURL = createThumbnailURL(from: result.thumbnail),
                 //ignore comics with no image available
-                !thumbnailPath.contains("image_not_available"),
+                !thumbnailURL.path.contains("image_not_available"),
                 let title = result.title else {
                     return nil
             }
             return Comic(id: id,
                          thumbnailURL: convertURLToHttps(thumbnailURL),
-                         description: result.description,
                          creators: createCreators(from: result.creators),
                          characters: createCharacters(from: result.characters),
                          title: title,
@@ -32,9 +35,16 @@ class MarvelFactory {
         })
     }
     
-    // MARK: - Private methods
+    func createThumbnailURL(from response: ComicThumbnailResponse?) -> URL? {
+        guard let response = response,
+            let thumbnailPath = response.path,
+            let thumbnailExtension = response.thumbnailExtension else {
+                return nil
+        }
+        return URL(string: "\(thumbnailPath).\(thumbnailExtension)")
+    }
     
-    private func createPrices(from response: [PriceResponse]?) -> [Price] {
+    func createPrices(from response: [PriceResponse]?) -> [Price] {
         return response?.compactMap({
             guard let type = $0.type,
                 let price = $0.price else { return nil }
@@ -43,12 +53,12 @@ class MarvelFactory {
         }) ?? []
     }
     
-    private func createCharacters(from response: CharactersResponse?) -> [String] {
+    func createCharacters(from response: CharactersResponse?) -> [String] {
         guard let response = response else { return [] }
         return response.items?.compactMap { $0.name } ?? []
     }
     
-    private func createCreators(from response: CreatorsResponse?) -> [Creator] {
+    func createCreators(from response: CreatorsResponse?) -> [Creator] {
         guard let response = response else { return [] }
         return response.items?.compactMap({ creatorResponse in
             guard let role = creatorResponse.role,
@@ -57,6 +67,8 @@ class MarvelFactory {
                            name: name)
         }) ?? []
     }
+    
+    // MARK: - Private methods
     
     private func convertURLToHttps(_ url: URL) -> URL? {
         var httpsUrl = URLComponents(string: url.absoluteString)

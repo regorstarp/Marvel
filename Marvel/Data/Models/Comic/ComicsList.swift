@@ -22,3 +22,10 @@ class ComicsList {
         self.init(comics: [], totalAvailableInServer: nil)
     }
 }
+
+extension ComicsList: Equatable {
+    static func == (lhs: ComicsList, rhs: ComicsList) -> Bool {
+        return lhs.comics == rhs.comics &&
+            lhs.totalAvailableInServer == rhs.totalAvailableInServer
+    }
+}

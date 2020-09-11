@@ -14,5 +14,6 @@ Then, run the following command inside the git directory:
 pod install
 ```
 
-Next, add a `Config.plist` file to your Xcode project and set your **public** and **private** keys to the marvel api, see [ConfigExample.plist](Marvel/ConfigExample.plist) for an example. 
+After running the command you will be prompted to input both the public and private keys for the marvel api.  
+The api keys are managed by [cocoapods-keys](https://github.com/orta/cocoapods-keys).  
 Go to https://developer.marvel.com/documentation/getting_started for more info about obtaining api access.

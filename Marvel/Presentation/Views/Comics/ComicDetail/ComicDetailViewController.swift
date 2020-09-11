@@ -27,9 +27,11 @@ class ComicDetailViewController: BaseViewController<ComicDetailPresenter> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityLabel = "ComicDetailView"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close,
                                                             target: self,
                                                             action: #selector(rightBarButtonItemTouchUpInside))
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "ComicDetailCloseButton"
         title = presenter.comic.title
         configureTableView()
     }

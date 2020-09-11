@@ -6,6 +6,7 @@
 //  Copyright © 2020 roger. All rights reserved.
 //
 
+import Keys
 import Moya
 
 enum MarvelTarget {
@@ -29,7 +30,7 @@ extension MarvelTarget: TargetType {
         }
     }
     
-    var method: Method {
+    var method: Moya.Method {
         switch self {
         case .getComics:
             return .get
@@ -50,12 +51,16 @@ extension MarvelTarget: TargetType {
     }
     
     var task: Task {
-        let config = getConfig()
+        //Api keys
+        let keys = MarvelKeys()
+        let publicKey = keys.marvelAPIPublicKey
+        let privateKey = keys.marvelAPIPrivateKey
+        
         let timestamp = "\(Date().timeIntervalSince1970)"
-        let hash = (timestamp + config.privateKey + config.publicKey).md5
+        let hash = (timestamp + privateKey + publicKey).md5
         var params: [String: Any] = [:]
         params["ts"] = timestamp
-        params["apikey"] = config.publicKey
+        params["apikey"] = publicKey
         params["hash"] = hash
         
         switch self {
@@ -87,20 +92,6 @@ extension MarvelTarget: TargetType {
         case .getComics:
             return ["Content-Type": "application/json"]
         }
-    }
-    
-    //MARK: - Private methods
-    
-    private func getConfig() -> Config {
-        let decoder = PropertyListDecoder()
-        guard let url = Bundle.main.url(forResource: "Config", withExtension: "plist"),
-            let data = try? Data(contentsOf: url),
-            let config = try? decoder.decode(Config.self, from: data),
-            !config.privateKey.isEmpty,
-            !config.publicKey.isEmpty else {
-                fatalError("You need to add your private and public keys to the Config.plist file. See ConfigExample.plist for an example")
-        }
-        return config
     }
 }
 

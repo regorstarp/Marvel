@@ -1,3 +1,10 @@
+plugin 'cocoapods-keys', {
+:project => "Marvel",
+:keys => [
+  "MarvelAPIPrivateKey",
+  "MarvelAPIPublicKey"
+]}
+
 platform :ios, '13.0'
 
 target 'Marvel' do

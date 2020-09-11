@@ -58,10 +58,18 @@
 		DB96739724EE7D2E00E81F13 /* MarvelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96739624EE7D2E00E81F13 /* MarvelFactory.swift */; };
 		DB96739B24EE7D8400E81F13 /* ComicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96739A24EE7D8400E81F13 /* ComicResponse.swift */; };
 		DB96739E24EE878300E81F13 /* MarvelRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB96739D24EE878300E81F13 /* MarvelRepositoryTests.swift */; };
+		DBABEDE5250B81410067A006 /* ComicDetailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABEDE4250B81410067A006 /* ComicDetailUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		DB96736E24ED84B900E81F13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB96734F24ED84B800E81F13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB96735624ED84B800E81F13;
+			remoteInfo = Marvel;
+		};
+		DBABEDE7250B81410067A006 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DB96734F24ED84B800E81F13 /* Project object */;
 			proxyType = 1;
@@ -128,6 +136,9 @@
 		DB96739624EE7D2E00E81F13 /* MarvelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelFactory.swift; sourceTree = "<group>"; };
 		DB96739A24EE7D8400E81F13 /* ComicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicResponse.swift; sourceTree = "<group>"; };
 		DB96739D24EE878300E81F13 /* MarvelRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelRepositoryTests.swift; sourceTree = "<group>"; };
+		DBABEDE2250B81410067A006 /* MarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBABEDE4250B81410067A006 /* ComicDetailUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicDetailUITests.swift; sourceTree = "<group>"; };
+		DBABEDE6250B81410067A006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6B2A89FED1A7219D59C6F6A /* Pods-MarvelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelTests.release.xcconfig"; path = "Target Support Files/Pods-MarvelTests/Pods-MarvelTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				80301BC5CB294AC68DF8077E /* Pods_MarvelTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBABEDDF250B81410067A006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +400,7 @@
 			children = (
 				DB96735924ED84B800E81F13 /* Marvel */,
 				DB96737024ED84B900E81F13 /* MarvelTests */,
+				DBABEDE3250B81410067A006 /* MarvelUITests */,
 				DB96735824ED84B800E81F13 /* Products */,
 				27F1AD7C3F875B2106BAA9FE /* Pods */,
 				8D0C3128E0EB3C7F5ADC08D1 /* Frameworks */,
@@ -393,6 +412,7 @@
 			children = (
 				DB96735724ED84B800E81F13 /* Marvel.app */,
 				DB96736D24ED84B900E81F13 /* MarvelTests.xctest */,
+				DBABEDE2250B81410067A006 /* MarvelUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -527,6 +547,15 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		DBABEDE3250B81410067A006 /* MarvelUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DBABEDE4250B81410067A006 /* ComicDetailUITests.swift */,
+				DBABEDE6250B81410067A006 /* Info.plist */,
+			);
+			path = MarvelUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -568,6 +597,24 @@
 			productReference = DB96736D24ED84B900E81F13 /* MarvelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		DBABEDE1250B81410067A006 /* MarvelUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBABEDE9250B81410067A006 /* Build configuration list for PBXNativeTarget "MarvelUITests" */;
+			buildPhases = (
+				DBABEDDE250B81410067A006 /* Sources */,
+				DBABEDDF250B81410067A006 /* Frameworks */,
+				DBABEDE0250B81410067A006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DBABEDE8250B81410067A006 /* PBXTargetDependency */,
+			);
+			name = MarvelUITests;
+			productName = MarvelUITests;
+			productReference = DBABEDE2250B81410067A006 /* MarvelUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -582,6 +629,10 @@
 						CreatedOnToolsVersion = 11.5;
 					};
 					DB96736C24ED84B900E81F13 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = DB96735624ED84B800E81F13;
+					};
+					DBABEDE1250B81410067A006 = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = DB96735624ED84B800E81F13;
 					};
@@ -602,6 +653,7 @@
 			targets = (
 				DB96735624ED84B800E81F13 /* Marvel */,
 				DB96736C24ED84B900E81F13 /* MarvelTests */,
+				DBABEDE1250B81410067A006 /* MarvelUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -629,6 +681,13 @@
 				DB50467A24F1BEA200F5C6EF /* Comics.json in Resources */,
 				DB50467C24F1BEEC00F5C6EF /* Prices.json in Resources */,
 				DB50468C24F2896100F5C6EF /* ComicsList.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBABEDE0250B81410067A006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +810,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBABEDDE250B81410067A006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBABEDE5250B81410067A006 /* ComicDetailUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -758,6 +825,11 @@
 			isa = PBXTargetDependency;
 			target = DB96735624ED84B800E81F13 /* Marvel */;
 			targetProxy = DB96736E24ED84B900E81F13 /* PBXContainerItemProxy */;
+		};
+		DBABEDE8250B81410067A006 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB96735624ED84B800E81F13 /* Marvel */;
+			targetProxy = DBABEDE7250B81410067A006 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -979,6 +1051,44 @@
 			};
 			name = Release;
 		};
+		DBABEDEA250B81410067A006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZS8S2M79WZ;
+				INFOPLIST_FILE = MarvelUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = roger.MarvelUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Marvel;
+			};
+			name = Debug;
+		};
+		DBABEDEB250B81410067A006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZS8S2M79WZ;
+				INFOPLIST_FILE = MarvelUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = roger.MarvelUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Marvel;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1005,6 +1115,15 @@
 			buildConfigurations = (
 				DB96737A24ED84B900E81F13 /* Debug */,
 				DB96737B24ED84B900E81F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBABEDE9250B81410067A006 /* Build configuration list for PBXNativeTarget "MarvelUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBABEDEA250B81410067A006 /* Debug */,
+				DBABEDEB250B81410067A006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

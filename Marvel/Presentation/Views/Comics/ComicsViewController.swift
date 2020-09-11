@@ -23,6 +23,7 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
         super.viewDidLoad()
         configureNavigationBar()
         configureCollectionView()
+        view.accessibilityLabel = "ComicsView"
     }
     
     // MARK: - Private methods
@@ -38,6 +39,7 @@ class ComicsViewController: BaseViewController<ComicsPresenter> {
     }
     
     private func configureCollectionView() {
+        collectionView.accessibilityLabel = "ComicsCollectionView"
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

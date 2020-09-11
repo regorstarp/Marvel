@@ -53,7 +53,7 @@ class ComicCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        accessibilityLabel = "ComicCollectionViewCell"
         clipsToBounds = true
         autoresizesSubviews = true
         layer.cornerRadius = Constants.cornerRadius
